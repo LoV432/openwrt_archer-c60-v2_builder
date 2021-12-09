@@ -17,10 +17,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push
-        id: docker_build
-        uses: docker/build-push-action@v2
+      - 
+        uses: actions/upload-artifact@v2
         with:
-          push: true
-          tags: lov432/openwrt-builder:latest
+            name: archer-c60-v2
+            path: /home/openwrt/openwrt/bin/targets/ath79/generic
