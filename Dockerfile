@@ -16,4 +16,15 @@ RUN useradd -ms /bin/bash openwrt
 USER openwrt
 WORKDIR /home/openwrt
 
-RUN git clone https://git.openwrt.org/openwrt/openwrt.git
+RUN git clone https://git.openwrt.org/openwrt/openwrt.git \
+    && cd openwrt \
+    && git pull \
+    && git checkout v21.02.1 \
+    && ./scripts/feeds update -a \
+    && ./scripts/feeds install -a
+
+COPY .config openwrt/
+
+RUN cd openwrt \
+    && make defconfig \
+    && make -j $(nproc) defconfig download clean world
