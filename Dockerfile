@@ -26,5 +26,6 @@ RUN git clone https://git.openwrt.org/openwrt/openwrt.git \
 COPY .config openwrt/
 
 RUN cd openwrt \
+    && chown openwrt:openwrt .config \
     && make defconfig \
     && make -j $(nproc) defconfig download clean world
