@@ -15,3 +15,5 @@ RUN useradd -ms /bin/bash openwrt
 
 USER openwrt
 WORKDIR /home/openwrt
+
+RUN git clone https://git.openwrt.org/openwrt/openwrt.git
