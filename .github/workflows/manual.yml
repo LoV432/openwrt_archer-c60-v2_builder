@@ -8,17 +8,13 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      -
-        name: Login to DockerHub
-        uses: docker/login-action@v1
+      - uses: shrink/actions-docker-extract@v1
+        id: extract
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - 
+          image: lov432/openwrt-builder
+          path: /home/openwrt/openwrt/bin/targets/ath79/generic/
+      - name: Upload Dist
         uses: actions/upload-artifact@v2
         with:
-            name: archer-c60-v2
-            path: /home/openwrt/openwrt/bin/targets/ath79/generic/
+          path: ${{ steps.extract.outputs.destination }}
+          name: dist
