@@ -21,4 +21,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             name: archer-c60-v2
-            path: /home/openwrt/openwrt/bin/targets/ath79/generic
+            path: /home/openwrt/openwrt/bin/targets/ath79/generic/
