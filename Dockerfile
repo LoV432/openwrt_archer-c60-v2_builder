@@ -32,4 +32,4 @@ RUN cd openwrt && chown openwrt:openwrt .config
 USER openwrt
 
 RUN cd openwrt \
-    && make -j $(nproc) defconfig download clean world
+    && make -j $(nproc) defconfig download clean world && make -j $(nproc) defconfig download clean world
