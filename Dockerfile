@@ -1,6 +1,6 @@
 FROM ubuntu:24.04
 
-ARG version=22.10.4
+ARG version=24.10.4
 ENV version=$version
 
 ARG config_url=
@@ -31,6 +31,8 @@ RUN git clone https://git.openwrt.org/openwrt/openwrt.git \
 COPY .config openwrt/
 RUN if [ -n "${config_url}" ]; then \
     wget -O openwrt/.config ${config_url}; \
+    else \
+    echo "Using default config"; \
     fi
 
 USER root
