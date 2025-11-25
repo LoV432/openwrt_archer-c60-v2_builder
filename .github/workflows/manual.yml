@@ -3,6 +3,15 @@ name: ci
 on:
     
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Openwrt version'
+        required: true
+        default: '22.10.4'
+      config_url:
+        description: 'Openwrt config url'
+        required: false
+        
 
 jobs:
   docker:
@@ -20,7 +29,7 @@ jobs:
         id: extract
         with:
           image: openwrt:latest
-          path: /home/openwrt/openwrt/bin/targets/ath79/generic/
+          path: /home/openwrt/openwrt/bin/
           
       - name: Upload Dist
         uses: actions/upload-artifact@v2
