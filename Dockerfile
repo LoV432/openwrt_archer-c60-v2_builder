@@ -1,10 +1,10 @@
 FROM ubuntu:24.04
 
 ARG version=22.10.4
-ENV version=${version}
+ENV version=$version
 
 ARG config_url=
-ENV config_url=${config_url}
+ENV config_url=$config_url
 
 
 

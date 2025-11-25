@@ -24,6 +24,9 @@ jobs:
         with:
           push: false
           tags: openwrt:latest
+          build-args: |
+            version=${{ github.event.inputs.version }}
+            config_url=${{ github.event.inputs.config_url }}
         
       - uses: shrink/actions-docker-extract@v1
         id: extract
