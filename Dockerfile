@@ -1,4 +1,4 @@
-FROM ubuntu:24.
+FROM ubuntu:24.04
 
 ARG version=22.10.4
 ENV version=${version}
