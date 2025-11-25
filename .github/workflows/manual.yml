@@ -28,14 +28,14 @@ jobs:
             version=${{ github.event.inputs.version }}
             config_url=${{ github.event.inputs.config_url }}
         
-      - uses: shrink/actions-docker-extract@v1
+      - uses: shrink/actions-docker-extract@v3
         id: extract
         with:
           image: openwrt:latest
-          path: /home/openwrt/openwrt/bin/
+          path: /home/openwrt/openwrt/bin/.
+          name: dist
           
       - name: Upload Dist
         uses: actions/upload-artifact@v4
         with:
-          path: ${{ steps.extract.outputs.destination }}
-          name: dist
+          path: dist

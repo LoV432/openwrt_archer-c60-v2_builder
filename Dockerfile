@@ -10,8 +10,6 @@ ENV config_url=$config_url
 
 RUN apt update
 
-RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
-
 RUN apt -y install build-essential clang flex bison g++ gawk \
     gcc-multilib g++-multilib gettext git libncurses5-dev libssl-dev \
     python3-setuptools rsync swig unzip zlib1g-dev file wget
@@ -40,7 +38,7 @@ USER root
 RUN cd openwrt && chown openwrt:openwrt .config
 
 USER openwrt
+WORKDIR /home/openwrt/openwrt
 
-RUN cd openwrt \
-    && make defconfig \
+RUN make defconfig \
     && make -j $(nproc) defconfig download clean world
