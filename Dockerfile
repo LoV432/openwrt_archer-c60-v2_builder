@@ -40,5 +40,4 @@ RUN cd openwrt && chown openwrt:openwrt .config
 USER openwrt
 WORKDIR /home/openwrt/openwrt
 
-RUN make defconfig \
-    && make -j $(nproc) defconfig download clean world
+RUN make -j $(nproc) defconfig download clean world
