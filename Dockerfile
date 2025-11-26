@@ -26,18 +26,18 @@ RUN git clone https://git.openwrt.org/openwrt/openwrt.git \
     && ./scripts/feeds update -a \
     && ./scripts/feeds install -a
 
-COPY .config openwrt/
+WORKDIR /home/openwrt/openwrt
+
+COPY .config .
+
+USER root
 RUN if [ -n "${config_url}" ]; then \
-    wget -O openwrt/.config ${config_url}; \
+    wget -O .config ${config_url}; \
     else \
     echo "Using default config"; \
     fi
-
-USER root
-
-RUN cd openwrt && chown openwrt:openwrt .config
+RUN chown openwrt:openwrt .config
 
 USER openwrt
-WORKDIR /home/openwrt/openwrt
 
 RUN make -j $(nproc) defconfig download clean world
